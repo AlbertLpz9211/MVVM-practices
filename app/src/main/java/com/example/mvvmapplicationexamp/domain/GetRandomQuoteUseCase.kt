@@ -3,10 +3,9 @@ package com.example.mvvmapplicationexamp.domain
 import com.example.mvvmapplicationexamp.data.QuoteRepository
 import com.example.mvvmapplicationexamp.data.model.QuoteModel
 
-class GetQuotesUseCase {
+class GetRandomQuoteUseCase {
     private val repository = QuoteRepository()
-
-    suspend operator fun invoke(): List<QuoteModel>? {
-        return repository.getAllQuotes()
+    operator fun invoke(): QuoteModel?{
+        repository.quotes = response
     }
 }

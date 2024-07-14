@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.example.mvvmapplicationexamp.databinding.ActivityMainBinding
 import com.example.mvvmapplicationexamp.ui.viewmodel.QuoteViewModel
@@ -16,12 +17,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+        quoteViewModel.onCeate()
+
         quoteViewModel.quoteModel.observe(this, Observer {
             binding.tvQuotes.text = it.quote
             binding.tvAuthor.text = it.author
+        })
+
+        quoteViewModel.isLoading.observe(this, Observer {
+            binding.pbMain.isVisible = it
         })
         binding.viewConteiner.setOnClickListener {
             quoteViewModel.ramdomQuote()
         }
     }
 }
+
+
